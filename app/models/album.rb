@@ -1,4 +1,6 @@
 class Album < ApplicationRecord
+  scope :rap, -> { where(genre: "Rap") }
+  scope :search, -> (name_parameter) { where("name like ?", "%#{name_parameter}%")}
   has_many :songs, dependent: :destroy
   validates :name, presence: true
   validates_length_of :name, maximum: 100
